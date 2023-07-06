@@ -47,7 +47,7 @@ public class MainPage extends JFrame {
         });
 
         // Create menu item for course menu
-        JMenuItem viewDeviceDetails = new JMenuItem("View Devicee Details");
+        JMenuItem viewDeviceDetails = new JMenuItem("View Device Details");
         viewDeviceDetails.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DeviceManagementSystem();

@@ -26,6 +26,7 @@ public class DeviceManagementSystem extends JFrame {
         txtIPAddress = new JTextField();
         txtSubnetMask = new JTextField();
         txtGatewayIP = new JTextField();
+        
 
         tblDevices = new JTable();
         tblDevices.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -58,6 +59,7 @@ public class DeviceManagementSystem extends JFrame {
         panel.add(new JLabel("Subnet Mask:"), gbc);
         gbc.gridy++;
         panel.add(new JLabel("Gateway IP:"), gbc);
+        
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -77,6 +79,9 @@ public class DeviceManagementSystem extends JFrame {
         panel.add(txtSubnetMask, gbc);
         gbc.gridy++;
         panel.add(txtGatewayIP, gbc);
+        gbc.gridy++;
+       
+
 
         gbc.gridx = 0;
         gbc.gridy++;
@@ -131,6 +136,7 @@ public class DeviceManagementSystem extends JFrame {
         String ipAddress = txtIPAddress.getText();
         String subnetMask = txtSubnetMask.getText();
         String gatewayIP = txtGatewayIP.getText();
+       // String userID=txtuserID.getText();
 
         try {
             String query = "INSERT INTO devices (DID, Dname, Dtype, MACAddress, IPAddress, subnetmask, gatewayIP) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -142,6 +148,7 @@ public class DeviceManagementSystem extends JFrame {
             statement.setString(5, ipAddress);
             statement.setString(6, subnetMask);
             statement.setString(7, gatewayIP);
+            //statement.setString(8, userID);
             statement.executeUpdate();
 
             clearFields();
@@ -161,6 +168,8 @@ public class DeviceManagementSystem extends JFrame {
             String ipAddress = txtIPAddress.getText();
             String subnetMask = txtSubnetMask.getText();
             String gatewayIP = txtGatewayIP.getText();
+            //String userID= txtuserID.getText();
+
 
             try {
                 String query = "UPDATE devices SET Dname=?, Dtype=?, MACAddress=?, IPAddress=?, subnetmask=?, gatewayIP=? WHERE DID=?";
@@ -172,6 +181,7 @@ public class DeviceManagementSystem extends JFrame {
                 statement.setString(5, subnetMask);
                 statement.setString(6, gatewayIP);
                 statement.setString(7, did);
+              //  statement.setString(8,userID);
                 statement.executeUpdate();
 
                 clearFields();
@@ -223,6 +233,8 @@ public class DeviceManagementSystem extends JFrame {
                 String ipAddress = resultSet.getString("IPAddress");
                 String subnetMask = resultSet.getString("subnetmask");
                 String gatewayIP = resultSet.getString("gatewayIP");
+                //String userID = resultSet.getString("userID");
+
                 devices.add(new Device(did, dname, dtype, macAddress, ipAddress, subnetMask, gatewayIP));
             }
 
@@ -249,6 +261,8 @@ public class DeviceManagementSystem extends JFrame {
             String ipAddress = tblDevices.getValueAt(selectedRow, 4).toString();
             String subnetMask = tblDevices.getValueAt(selectedRow, 5).toString();
             String gatewayIP = tblDevices.getValueAt(selectedRow, 6).toString();
+            //String userID = tblDevices.getValueAt(selectedRow, 7).toString();
+
 
             txtDID.setText(did);
             txtDName.setText(dname);
@@ -257,6 +271,7 @@ public class DeviceManagementSystem extends JFrame {
             txtIPAddress.setText(ipAddress);
             txtSubnetMask.setText(subnetMask);
             txtGatewayIP.setText(gatewayIP);
+          //  txtuserID.setText(userID);
         }
     }
 
@@ -268,6 +283,7 @@ public class DeviceManagementSystem extends JFrame {
         txtIPAddress.setText("");
         txtSubnetMask.setText("");
         txtGatewayIP.setText("");
+       // txtuserID.setText("");
     }
 
     public static void main(String[] args) {
@@ -282,6 +298,7 @@ public class DeviceManagementSystem extends JFrame {
         private String ipAddress;
         private String subnetMask;
         private String gatewayIP;
+       // private String userID;
 
         public Device(String did, String dname, String dtype, String macAddress, String ipAddress, String subnetMask, String gatewayIP) {
             this.did = did;
@@ -291,6 +308,7 @@ public class DeviceManagementSystem extends JFrame {
             this.ipAddress = ipAddress;
             this.subnetMask = subnetMask;
             this.gatewayIP = gatewayIP;
+           
         }
 
         public String getDid() {
